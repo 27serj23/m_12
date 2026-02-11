@@ -1,0 +1,62 @@
+[
+  {
+    "model": "store.brand",
+    "pk": 1,
+    "fields": {
+      "name": "Apple",
+      "country_of_origin": "США"
+    }
+  },
+  {
+    "model": "store.brand",
+    "pk": 2,
+    "fields": {
+      "name": "Samsung",
+      "country_of_origin": "Южная Корея"
+    }
+  },
+  {
+    "model": "store.brand",
+    "pk": 3,
+    "fields": {
+      "name": "Sony",
+      "country_of_origin": "Япония"
+    }
+  },
+  {
+    "model": "store.brand",
+    "pk": 4,
+    "fields": {
+      "name": "Xiaomi",
+      "country_of_origin": "Китай"
+    }
+  },
+  {
+    "model": "store.tag",
+    "pk": 1,
+    "fields": {
+      "name": "новинка"
+    }
+  },
+  {
+    "model": "store.tag",
+    "pk": 2,
+    "fields": {
+      "name": "хит продаж"
+    }
+  },
+  {
+    "model": "store.tag",
+    "pk": 3,
+    "fields": {
+      "name": "акция"
+    }
+  },
+  {
+    "model": "store.tag",
+    "pk": 4,
+    "fields": {
+      "name": "распродажа"
+    }
+  }
+]

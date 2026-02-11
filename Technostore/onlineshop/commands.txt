@@ -1,0 +1,11 @@
+# 1. Применяем миграции
+python manage.py migrate
+
+# 2. Загружаем фикстуры (бренды, теги)
+python manage.py loaddata initial_data.json
+
+# 3. Генерируем товары (50 шт.)
+python techno_products.py
+
+# 4. Запускаем тесты (убеждаемся, что всё работает)
+python manage.py test store.tests
