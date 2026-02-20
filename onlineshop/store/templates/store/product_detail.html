@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }} - TechStore</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Наши стили -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">TechStore</a>
+            <div>
+                <a href="{% url 'home' %}" class="btn btn-outline-primary me-2">На главную</a>
+                <a href="{% url 'product_list' %}" class="btn btn-outline-secondary">Все товары</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4 product-detail-img">
+                    <div class="card-body text-center">
+                        <i class="fas fa-laptop fa-10x text-secondary mb-3"></i>
+                        <h2>{{ product.name }}</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Информация о товаре</h4>
+
+                        <table class="table info-table">
+                            <tr>
+                                <th>Название:</th>
+                                <td>{{ product.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Цена:</th>
+                                <td><strong class="text-primary">{{ product.price }} ₽</strong></td>
+                            </tr>
+                            <tr>
+                                <th>Категория:</th>
+                                <td>{{ product.category.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Бренд:</th>
+                                <td>{{ product.brand.name }} ({{ product.brand.country_of_origin }})</td>
+                            </tr>
+                            <tr>
+                                <th>Теги:</th>
+                                <td>
+                                    {% for tag in product.tags.all %}
+                                    <span class="badge bg-secondary">{{ tag.name }}</span>
+                                    {% empty %}
+                                    —
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Наличие на складе:</th>
+                                <td>
+                                    {% if product.is_available %}
+                                    <span class="badge bg-success">{{ product.stock }} шт.</span>
+                                    {% else %}
+                                    <span class="badge bg-danger">Нет в наличии</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div class="mt-4">
+                            {% if product.is_available %}
+                            <button class="btn btn-success btn-lg w-100 mb-2 btn-cart-add">
+                                <i class="fas fa-cart-plus me-2"></i>Добавить в корзину
+                            </button>
+                            {% else %}
+                            <div class="alert alert-warning">
+                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                Товар временно отсутствует на складе
+                            </div>
+                            {% endif %}
+
+                            <a href="{% url 'product_list' %}" class="btn btn-outline-primary w-100">
+                                Вернуться к списку товаров
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <h4>Описание</h4>
+            <p>Здесь будет подробное описание товара, характеристики и отзывы покупателей.</p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Наши скрипты -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
