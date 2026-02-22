@@ -25,6 +25,16 @@
     </nav>
 
     <div class="container">
+        <!-- Сообщения (если есть) -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
         <div class="row">
             <div class="col-md-6">
                 <div class="card mb-4 product-detail-img">
@@ -61,9 +71,9 @@
                                 <th>Теги:</th>
                                 <td>
                                     {% for tag in product.tags.all %}
-                                    <span class="badge bg-secondary">{{ tag.name }}</span>
+                                        <span class="badge bg-secondary">{{ tag.name }}</span>
                                     {% empty %}
-                                    —
+                                        —
                                     {% endfor %}
                                 </td>
                             </tr>
@@ -71,9 +81,9 @@
                                 <th>Наличие на складе:</th>
                                 <td>
                                     {% if product.is_available %}
-                                    <span class="badge bg-success">{{ product.stock }} шт.</span>
+                                        <span class="badge bg-success">{{ product.stock }} шт.</span>
                                     {% else %}
-                                    <span class="badge bg-danger">Нет в наличии</span>
+                                        <span class="badge bg-danger">Нет в наличии</span>
                                     {% endif %}
                                 </td>
                             </tr>
@@ -81,15 +91,20 @@
 
                         <div class="mt-4">
                             {% if product.is_available %}
-                            <button class="btn btn-success btn-lg w-100 mb-2 btn-cart-add">
-                                <i class="fas fa-cart-plus me-2"></i>Добавить в корзину
-                            </button>
+                                <button class="btn btn-success btn-lg w-100 mb-2 btn-cart-add">
+                                    <i class="fas fa-cart-plus me-2"></i>Добавить в корзину
+                                </button>
                             {% else %}
-                            <div class="alert alert-warning">
-                                <i class="fas fa-exclamation-triangle me-2"></i>
-                                Товар временно отсутствует на складе
-                            </div>
+                                <div class="alert alert-warning">
+                                    <i class="fas fa-exclamation-triangle me-2"></i>
+                                    Товар временно отсутствует на складе
+                                </div>
                             {% endif %}
+
+                            <!-- Кнопка для перехода к созданию отзыва с предвыбранным товаром -->
+                            <a href="{% url 'create_review' %}?product={{ product.id }}" class="btn btn-primary w-100 mb-2">
+                                <i class="fas fa-star me-2"></i>Оставить отзыв
+                            </a>
 
                             <a href="{% url 'product_list' %}" class="btn btn-outline-primary w-100">
                                 Вернуться к списку товаров
