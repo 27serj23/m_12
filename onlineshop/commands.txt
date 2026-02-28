@@ -1,8 +1,14 @@
 # 1. Применяем миграции
 python manage.py migrate
 
-# 3. Генерируем товары (50 шт.)
+# 2. Генерируем товары (50 шт.)
 python manage.py populate_db --count 50
 
-# 4. Запускаем тесты (убеждаемся, что всё работает)
+# 3. python manage.py test store.tests.test_sorting
+
+# 4. python manage.py test store.tests.test_orm_crud
+
+# 5. python manage.py test store.tests.test_orm_relationships
+
+# 6. Запускаем тесты (убеждаемся, что всё работает)
 python manage.py test store.tests
