@@ -11,10 +11,13 @@ class BrandModelTest(TestCase):
         self.assertTrue(brand.name)
         self.assertTrue(brand.country_of_origin)
 
+<<<<<<< Updated upstream
     def test_brand_str_method(self):
         brand = BrandFactory(name="TestBrand")
         self.assertEqual(str(brand), "TestBrand")
 
+=======
+>>>>>>> Stashed changes
 
 class TagModelTest(TestCase):
     def test_create_tag(self):
@@ -27,10 +30,13 @@ class TagModelTest(TestCase):
         with self.assertRaises(IntegrityError):
             Tag.objects.create(name="unique_tag")
 
+<<<<<<< Updated upstream
     def test_tag_str_method(self):
         tag = TagFactory(name="TestTag")
         self.assertEqual(str(tag), "TestTag")
 
+=======
+>>>>>>> Stashed changes
 
 class ProductModelTest(TestCase):
     @classmethod
